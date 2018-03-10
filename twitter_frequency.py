@@ -5,10 +5,11 @@ from collections import Counter
 from prettytable import PrettyTable
 
 
-CONSUMER_KEY = 'JdtQ9Bo5WdOfwmZwZCaa6xUq7'
-CONSUMER_SECRET = 'oNoZDCtojF076qj8FB9XizZapj8GImTzkrPchWz9u8lqEBBjVA'
-OAUTH_TOKEN = '972493075317776385-F6SjPPjJgRs2tc5ktmFRkWiNBBHaAPh'
-OAUTH_TOKEN_SECRET = '03zatnZGuWrMzpsxZAngfWNjoYtpT9OW1TqPBMk7IbBHD'
+CONSUMER_KEY = '****'
+CONSUMER_SECRET = '****'
+OAUTH_TOKEN = '****'
+OAUTH_TOKEN_SECRET = '*****'
+
 
 auth = OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)                      
 auth.set_access_token(OAUTH_TOKEN, OAUTH_TOKEN_SECRET)                  ## for authorization
@@ -36,7 +37,7 @@ words = [ word
                                 for text in status_texts
                                          for word in text.split() ]  
                                          
-                                         
+## Format output with prettytable                                         
 for label, data in (('Text', status_texts),
                         ('Screen Name', screen_names),
                         ('Word', words)):
@@ -47,6 +48,14 @@ for label, data in (('Text', status_texts),
             print(table)
                                          
                                          
-                                         
-                                         
-                                         
+def get_lexical_diversity(items):
+    return 1.0*len(set(items))/len(items)    ## multiple by 1.0 to avoid rounding up
+    
+def get_average_words(tweets):
+    total_words = sum([len(tweet.split()) for tweet in tweets])
+    return 1.0*total_words/len(tweets)
+    
+print("Average words: {0}".format(get_average_words(status_texts)))    
+print("Word Diversity: {0}".format(get_lexical_diversity(words)))                                          
+print("Screen Name Diversity: {0}".format(get_lexical_diversity(screen_names)))    
+print("Hashtag Diversity: {0}".format(get_lexical_diversity(hashtags)))
