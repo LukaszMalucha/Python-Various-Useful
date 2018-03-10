@@ -17,8 +17,17 @@ api = tweepy.API(auth)                                                  ## Conne
 count = 10
 query = 'Dublin'
 
-## Get all status
+## Get all tweets for the search query
 results = [status for status in tweepy.Cursor(api.search, q=query).items(count)]        ## Use api.search object based on query (10) value to create list
 
 for result in results:                                                                  ## print as json
-    print(json.dumps(result._json, indent=2))                                           ##     
+    print(json.dumps(result._json, indent=4))                                           
+    
+
+for status in results:                                                          ## Access attribute values
+    print(status.text.encode('utf-8'))                                          ## unicode text
+    print(status.user.id)                                                           
+    print(status.user.screent_name)
+    print(status.user.profile_image_url_https)
+    print(status.user.followers_count)
+    print(status.place)
