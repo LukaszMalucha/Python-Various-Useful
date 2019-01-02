@@ -6,15 +6,37 @@ class Rectangle:
         self.width = width
         self.height = height
         
+### Access width through rectangle.width instead of width() through decorator         
+    @property
+    def width(self):
+        return self._width
+    
+    @width.setter
+    def width(self, width):
+        if width <= 0:
+            raise ValueError("Width must be positive.")
+        else:
+            self_width = width
+
+
+    @height.setter
+    def height(self, height):
+        if height <= 0:
+            raise ValueError("height must be positive.")
+        else:
+            self_height = height
+    
+       
+    @property
+    def height(self):
+        return self._height
+        
     def area(self):
         return self.width * self,height
     
     def perimiter(self):
         return 2 * (self.width + self.height)
-    
-    
-    def get_width(self):
-        pass
+
     
     ## stringify
     def __str__(self):
