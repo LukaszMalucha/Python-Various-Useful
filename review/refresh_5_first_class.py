@@ -80,18 +80,46 @@ results = list(filter(lambda x: x%3 == 0, range(25)))
 results = list(zip(l1, l2))
 
 
+############################################################# Reducing Functions
+
+l = [5,8,6,10,9]
+max_value = lambda a,b: a if a > b else b
+
+def max_sequence(sequence):
+    result = sequence[0]
+    for e in sequence[1:]:
+        result = max_value(result,e)
+    return result    
+        
+
+from functools import reduce
+
+l = [5,8,6,10,9]
+
+reduce(lambda a,b: a if a > b else b, l)
+
+reduce(lambda a,b: a if a > b else b, 'python')
+
+reduce(lambda a, b: a + ' ' + b, ('python', 'is', 'awesome'))
 
 
+############################################################## Partial Functions
+
+f = lambda b, c: my_func(10,b,c)
+
+from functools import partial
+
+f = partial(my_func, 10)
 
 
+################################################################ Operator Module
 
+from operator import itemgetter
 
+l = [1,2,3,4,5,6]
+f = itemgetter(1,3,4) ## indices
 
-
-
-
-
-
+f(l)
 
 
 
