@@ -92,21 +92,56 @@ for num in f:
 ######################################################## Iterable from Generator      
 
 
+
+
+class Squares: 
+    def __init__(self, n):
+        self.n = n
+    
+    def __iter__(self):
+        return Squares.squares_gen(self.n)
+    
+    @staticmethod
+    def squares_gen(n):
+        for i in range(n):
+            yield i ** 2
+    
+sq = Squares(5)     
     
     
+for num in sq:
+    print(num)    
+    
+list(sq)        
     
     
+### enumerator
+
+def squares(n):
+    for i in range(n):
+        yield i ** 2   
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+sq = squares(5)
+
+enum_sq = enumerate(sq)
+list(enum_sq)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
     
     
